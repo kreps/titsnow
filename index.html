@@ -21,5 +21,15 @@
 </head>
 <body>
   <h1>titsnow</h1>
+  <audio id="jingle" src="le_tits_now_jingle_bells.mp3" autoplay loop></audio>
+  <script>
+    // Brauserid blokeerivad heliga autoplay'd enne esimest kasutaja tegevust,
+    // seega proovime uuesti esimese kliki/klahvivajutuse peale.
+    const audio = document.getElementById('jingle');
+    const start = () => audio.play().catch(() => {});
+    start();
+    ['click', 'keydown', 'touchstart'].forEach(e =>
+      document.addEventListener(e, start, { once: true }));
+  </script>
 </body>
 </html>
