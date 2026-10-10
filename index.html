@@ -16,20 +16,27 @@
       background: #fff;
       color: #111;
     }
-    #play {
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    .buttons button {
       font: inherit;
       font-size: 1.5rem;
       font-weight: 600;
       padding: 20px 40px;
       border: none;
       border-radius: 999px;
-      background: #c62828;
       color: #fff;
       cursor: pointer;
       animation: pulse 1.2s ease-in-out infinite;
     }
-    #play:hover { background: #b71c1c; }
-    #play[hidden] { display: none; }
+    #ye { background: #2e7d32; }
+    #ye:hover { background: #1b5e20; }
+    #yes { background: #c62828; }
+    #yes:hover { background: #b71c1c; }
     @keyframes pulse {
       50% { transform: scale(1.08); }
     }
@@ -40,19 +47,24 @@
 </head>
 <body>
   <h1>le tits now</h1>
-  <button id="play" hidden>▶ Vajuta siia</button>
+  <div class="buttons">
+    <button id="ye">ye</button>
+    <button id="yes">yes</button>
+  </div>
   <audio id="jingle" src="le_tits_now_jingle_bells.mp3" autoplay></audio>
   <script>
     // Brauserid blokeerivad heliga autoplay'd enne esimest kasutaja tegevust,
     // seega proovime uuesti esimese kliki/klahvivajutuse peale.
     const audio = document.getElementById('jingle');
-    const button = document.getElementById('play');
-    const start = () => audio.play().catch(() => { button.hidden = false; });
-    audio.addEventListener('playing', () => { button.hidden = true; });
-    button.addEventListener('click', start);
+    const start = () => audio.play().catch(() => {});
     start();
     ['click', 'keydown', 'touchstart'].forEach(e =>
       document.addEventListener(e, start, { once: true }));
+
+    // Mõlemad nupud mängivad loo algusest.
+    const replay = () => { audio.currentTime = 0; start(); };
+    document.getElementById('ye').addEventListener('click', replay);
+    document.getElementById('yes').addEventListener('click', replay);
   </script>
 </body>
 </html>
