@@ -34,6 +34,11 @@
       color: #fff;
       cursor: pointer;
     }
+    .video {
+      width: min(325px, calc(100vw - 32px));
+      aspect-ratio: 9 / 16;
+      border: none;
+    }
     #ye { background: #2e7d32; }
     #ye:hover { background: #1b5e20; }
     #yes { background: #c62828; }
@@ -49,6 +54,8 @@
     <button id="ye">yes</button>
     <button id="yes">yes</button>
   </div>
+  <iframe class="video" src="https://www.tiktok.com/embed/v2/7186433302037859589"
+    allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
   <audio id="jingle" src="le_tits_now_jingle_bells.mp3" autoplay></audio>
   <script>
     // Brauserid blokeerivad heliga autoplay'd enne esimest kasutaja tegevust,
