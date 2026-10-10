@@ -3,16 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>titsnow</title>
+  <title>le tits now</title>
   <style>
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
-      place-items: center;
+      place-content: center;
+      justify-items: center;
+      gap: 24px;
       font-family: system-ui, sans-serif;
       background: #fff;
       color: #111;
+    }
+    #play {
+      font: inherit;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 999px;
+      background: #c62828;
+      color: #fff;
+      cursor: pointer;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    #play:hover { background: #b71c1c; }
+    #play[hidden] { display: none; }
+    @keyframes pulse {
+      50% { transform: scale(1.08); }
     }
     @media (prefers-color-scheme: dark) {
       body { background: #111; color: #eee; }
@@ -20,13 +39,17 @@
   </style>
 </head>
 <body>
-  <h1>titsnow</h1>
+  <h1>le tits now</h1>
+  <button id="play" hidden>▶ Vajuta siia</button>
   <audio id="jingle" src="le_tits_now_jingle_bells.mp3" autoplay loop></audio>
   <script>
     // Brauserid blokeerivad heliga autoplay'd enne esimest kasutaja tegevust,
     // seega proovime uuesti esimese kliki/klahvivajutuse peale.
     const audio = document.getElementById('jingle');
-    const start = () => audio.play().catch(() => {});
+    const button = document.getElementById('play');
+    const start = () => audio.play().catch(() => { button.hidden = false; });
+    audio.addEventListener('playing', () => { button.hidden = true; });
+    button.addEventListener('click', start);
     start();
     ['click', 'keydown', 'touchstart'].forEach(e =>
       document.addEventListener(e, start, { once: true }));
