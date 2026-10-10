@@ -16,33 +16,11 @@
       background: #fff;
       color: #111;
     }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-    }
-    .buttons button {
-      font: inherit;
-      font-size: 1.5rem;
-      font-weight: 600;
-      width: 120px;
-      height: 120px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      color: #fff;
-      cursor: pointer;
-    }
     .video {
       width: min(325px, calc(100vw - 32px));
       aspect-ratio: 9 / 16;
       border: none;
     }
-    #ye { background: #2e7d32; }
-    #ye:hover { background: #1b5e20; }
-    #yes { background: #c62828; }
-    #yes:hover { background: #b71c1c; }
     @media (prefers-color-scheme: dark) {
       body { background: #111; color: #eee; }
     }
@@ -50,26 +28,7 @@
 </head>
 <body>
   <h1>LE TITS NOW</h1>
-  <div class="buttons">
-    <button id="ye">yes</button>
-    <button id="yes">yes</button>
-  </div>
   <iframe class="video" src="https://www.tiktok.com/embed/v2/7186433302037859589"
     allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
-  <audio id="jingle" src="le_tits_now_jingle_bells.mp3" autoplay></audio>
-  <script>
-    // Brauserid blokeerivad heliga autoplay'd enne esimest kasutaja tegevust,
-    // seega proovime uuesti esimese kliki/klahvivajutuse peale.
-    const audio = document.getElementById('jingle');
-    const start = () => audio.play().catch(() => {});
-    start();
-    ['click', 'keydown', 'touchstart'].forEach(e =>
-      document.addEventListener(e, start, { once: true }));
-
-    // Mõlemad nupud mängivad loo algusest.
-    const replay = () => { audio.currentTime = 0; start(); };
-    document.getElementById('ye').addEventListener('click', replay);
-    document.getElementById('yes').addEventListener('click', replay);
-  </script>
 </body>
 </html>
